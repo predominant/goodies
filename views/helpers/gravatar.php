@@ -80,7 +80,7 @@ class GravatarHelper extends AppHelper {
 		if ($ext === true) {
 			// If 'ext' option is supplied and true, append an extension to the generated image URL.
 			// This helps systems that don't display images unless they have a specific image extension on the URL.
-			$imageUrl .= '.jpg'
+			$imageUrl .= '.jpg';
 		}
 		$imageUrl .= $this->__buildOptions($options);
 
