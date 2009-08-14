@@ -52,18 +52,20 @@ class AutoJavascriptHelper extends AppHelper {
  */
 	public function beforeRender() {
 		extract($this->__options);
-
-		$jsController = $path . DS . $this->params['controller'] . '.js';
-		$jsAction = $path . DS . $this->params['controller'] . DS . $this->params['action'] . '.js';
-
-		// Controller Javascript File
-		if (file_exists(WWW_ROOT . 'js' . DS . $jsController)) {
-			$this->Javascript->link($jsController, false);
+		if (!empty($path)) {
+			$path .= DS;
 		}
 
-		// Action Javascript File
-		if (file_exists(WWW_ROOT . 'js' . DS . $jsAction)) {
-			$this->Javascript->link($jsAction, false);
+		$files = array(
+			$this->params['controller'] . '.js',
+			$this->params['controller'] . DS . $this->params['action'] . '.js');
+
+		foreach ($files as $file) {
+			$file = $path . $file;
+			$includeFile = WWW_ROOT . 'js' . DS . $file;
+			if (file_exists($includeFile)) {
+				$this->Javascript->link($file, false);
+			}
 		}
 	}
 }
