@@ -1,13 +1,14 @@
-<?php 
+<?php
 /**
- * Auto JavaScript Helper
+ * CakeTime JavaScript Helper
  *
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
  * @copyright   Copyright 2009, Graham Weldon
+ * @link        http://grahamweldon.com/projects/caketime CakeTime Project
+ * @package     caketime
+ * @subpackage  caketime.views.helpers
  * @author      Graham Weldon
- * @link        http://grahamweldon.com
- * @version     0.1
  * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class AutoJavascriptHelper extends AppHelper {
@@ -50,23 +51,18 @@ class AutoJavascriptHelper extends AppHelper {
  * @access public
  */
 	public function beforeRender() {
-		if (!class_exists('File')) {
-			App::import('File');
-		}
 		extract($this->__options);
 
 		$jsController = $path . DS . $this->params['controller'] . '.js';
 		$jsAction = $path . DS . $this->params['controller'] . DS . $this->params['action'] . '.js';
 
 		// Controller Javascript File
-		$this->File = new File(WWW_ROOT . 'js' . DS . $jsController);
-		if ($this->File->exists()) {
+		if (file_exists(WWW_ROOT . 'js' . DS . $jsController)) {
 			$this->Javascript->link($jsController, false);
 		}
 
 		// Action Javascript File
-		$this->File = new File(WWW_ROOT . 'js' . DS . $jsAction);
-		if ($this->File->exists()) {
+		if (file_exists(WWW_ROOT . 'js' . DS . $jsAction)) {
 			$this->Javascript->link($jsAction, false);
 		}
 	}
