@@ -44,7 +44,7 @@ class GravatarHelper extends AppHelper {
  * @var array
  * @access private
  */
-	private $__defaultIcons = array('none','identicon', 'monsterid', 'wavatar');
+	private $__defaultIcons = array('none', 'identicon', 'monsterid', 'wavatar');
 
 /**
  * Default settings
@@ -76,16 +76,29 @@ class GravatarHelper extends AppHelper {
 		$ext = $options['ext'];
 		unset($options['ext']);
 
-		$imageUrl  = $this->__url . $this->__emailHash($email, $this->__hashType);
+		$imageUrl = $this->url($email, $options);
+
+		unset($options['default'], $options['size'], $options['rating']);
+		return $this->Html->image($imageUrl, $options);
+	}
+
+/**
+ * Generate image URL
+ *
+ * @param string $email Email address
+ * @param string $options Array of options, keyed from default settings
+ * @return string Gravatar Image URL
+ * @access public
+ */
+	public function url($email, $options = array()) {
+		$imageUrl = $this->__url . $this->__emailHash($email, $this->__hashType);
 		if ($ext === true) {
 			// If 'ext' option is supplied and true, append an extension to the generated image URL.
 			// This helps systems that don't display images unless they have a specific image extension on the URL.
 			$imageUrl .= '.jpg';
 		}
 		$imageUrl .= $this->__buildOptions($options);
-
-		unset($options['default'], $options['size'], $options['rating']);
-		return $this->Html->image($imageUrl, $options);
+		return $imageUrl;
 	}
 
 /**
