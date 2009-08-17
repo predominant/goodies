@@ -73,12 +73,9 @@ class GravatarHelper extends AppHelper {
 	public function image($email, $options = array()) {
 		$options = $this->__cleanOptions(array_merge($this->__default, $options));
 
-		$ext = $options['ext'];
-		unset($options['ext']);
-
 		$imageUrl = $this->url($email, $options);
 
-		unset($options['default'], $options['size'], $options['rating']);
+		unset($options['default'], $options['size'], $options['rating'], $options['ext']);
 		return $this->Html->image($imageUrl, $options);
 	}
 
@@ -91,6 +88,9 @@ class GravatarHelper extends AppHelper {
  * @access public
  */
 	public function url($email, $options = array()) {
+		$ext = $options['ext'];
+		unset($options['ext']);
+
 		$imageUrl = $this->__url . $this->__emailHash($email, $this->__hashType);
 		if ($ext === true) {
 			// If 'ext' option is supplied and true, append an extension to the generated image URL.
