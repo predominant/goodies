@@ -171,9 +171,6 @@ class GravatarHelper extends AppHelper {
 			$optionArray = array();
 			foreach ($gravatarOptions as $key) {
 				$value = $options[$key];
-				if ($value == 'default' || $value == 'none') {
-					continue;
-				}
 				$optionArray[] = $key . '=' . mb_strtolower($value);
 			}
 			return '?' . implode('&amp;', $optionArray);
