@@ -1,7 +1,4 @@
 <?php
-App::import('Core', array('ClassRegistry', 'Controller', 'Helper', 'AppHelper', 'View', 'Security'));
-App::import('Helper', array('Html', 'Goodies.Gravatar'));
-
 /**
  * CakePHP Gravatar Helper Test
  *
@@ -10,6 +7,14 @@ App::import('Helper', array('Html', 'Goodies.Gravatar'));
  * @package goodies
  * @subpackage goodies.tests.cases.helpers
  *
+ */
+App::import('Helper', array('Html', 'Goodies.Gravatar'));
+
+/**
+ * GravatarHelper Test
+ *
+ * @package goodies
+ * @subpackage goodies.test.cases.views.helpers
  */
 class GravatarHelperTest extends CakeTestCase {
 
@@ -29,7 +34,6 @@ class GravatarHelperTest extends CakeTestCase {
  */
 	public function startTest() {
 		$this->Gravatar =& ClassRegistry::init('GravatarHelper');
-		$this->Gravatar->Html =& ClassRegistry::init('HtmlHelper');
 	}
 
 /**
@@ -39,19 +43,35 @@ class GravatarHelperTest extends CakeTestCase {
  * @access public
  */
 	public function endTest() {
-		unset($this->Controller);
 		unset($this->Gravatar);
 	}
 
 /**
- * testUrl
+ * testNonSecureUrl
  *
  * @return void
  * @access public
  */
-	public function testUrl() {
+	public function testNonSecureUrl() {
 		$expected = 'http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false));
+		$this->assertEqual($expected, $result);
+
+		$_SERVER['HTTPS'] = true;
+		$expected = 'http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
+		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'secure' => false));
+		$this->assertEqual($expected, $result);
+	}
+
+/**
+ * testSecureUrl
+ *
+ * @return void
+ * @author Predominant
+ */
+	public function testSecureUrl() {
+		$expected = 'https://secure.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
+		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'secure' => true));
 		$this->assertEqual($expected, $result);
 
 		$_SERVER['HTTPS'] = true;

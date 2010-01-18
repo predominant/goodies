@@ -6,10 +6,10 @@ App::import(array('Security', 'Validation'));
  *
  * A CakePHP View Helper for the display of Gravatar images (http://www.gravatar.com)
  *
- * @copyright Copyright 2009, Graham Weldon
- * @version 1.2
- * @author Graham Weldon <graham@grahamweldon.com>
+ * @copyright Copyright 2010, Graham Weldon
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @package goodies
+ * @subpackage goodies.tests.cases.helpers
  *
  */
 class GravatarHelper extends AppHelper {
@@ -56,11 +56,10 @@ class GravatarHelper extends AppHelper {
  * @access private
  */
 	private $__default = array(
-		'default' => 'identicon',
+		'default' => null,
 		'size' => null,
 		'rating' => null,
-		'ext' => false,
-		'secure' => false);
+		'ext' => false);
 
 /**
  * Helpers used by this helper
@@ -71,6 +70,16 @@ class GravatarHelper extends AppHelper {
 	public $helpers = array('Html');
 
 /**
+ * Constructor
+ *
+ * @access public
+ */
+	public function __construct() {
+		// Default the secure option to match the current URL.
+		$this->__default['secure'] = env('HTTPS');
+	}
+
+/**
  * Show gravatar for the supplied email address
  *
  * @param string $email Email address
@@ -79,7 +88,6 @@ class GravatarHelper extends AppHelper {
  * @access public
  */
 	public function image($email, $options = array()) {
-		$options = $this->__cleanOptions(array_merge($this->__default, $options));
 		$imageUrl = $this->url($email, $options);
 		unset($options['default'], $options['size'], $options['rating'], $options['ext']);
 		return $this->Html->image($imageUrl, $options);
@@ -94,9 +102,11 @@ class GravatarHelper extends AppHelper {
  * @access public
  */
 	public function url($email, $options = array()) {
+		$options = $this->__cleanOptions(array_merge($this->__default, $options));
 		$ext = $options['ext'];
-		unset($options['ext']);
-		$protocol = $options['secure'] === true ? 'https' : 'http';
+		$secure = $options['secure'];
+		unset($options['ext'], $options['secure']);
+		$protocol = $secure === true ? 'https' : 'http';
 
 		$imageUrl = $this->__url[$protocol] . $this->__emailHash($email, $this->__hashType);
 		if ($ext === true) {
@@ -150,6 +160,7 @@ class GravatarHelper extends AppHelper {
 				unset($options['default']);
 			}
 		}
+		debug($options);
 		return $options;
 	}
 
