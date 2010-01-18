@@ -20,7 +20,10 @@ class GravatarHelper extends AppHelper {
  * @var string
  * @access private
  */
-	private $__url = 'http://www.gravatar.com/avatar/';
+	private $__url = array(
+		'http' => 'http://www.gravatar.com/avatar/',
+		'https' => 'https://secure.gravatar.com/avatar/'
+	);
 
 /**
  * Hash type to use for email addresses
@@ -52,7 +55,12 @@ class GravatarHelper extends AppHelper {
  * @var array
  * @access private
  */
-	private $__default = array('default' => 'identicon', 'size' => null, 'rating' => null, 'ext' => false);
+	private $__default = array(
+		'default' => 'identicon',
+		'size' => null,
+		'rating' => null,
+		'ext' => false,
+		'secure' => false);
 
 /**
  * Helpers used by this helper
@@ -72,9 +80,7 @@ class GravatarHelper extends AppHelper {
  */
 	public function image($email, $options = array()) {
 		$options = $this->__cleanOptions(array_merge($this->__default, $options));
-
 		$imageUrl = $this->url($email, $options);
-
 		unset($options['default'], $options['size'], $options['rating'], $options['ext']);
 		return $this->Html->image($imageUrl, $options);
 	}
@@ -90,8 +96,9 @@ class GravatarHelper extends AppHelper {
 	public function url($email, $options = array()) {
 		$ext = $options['ext'];
 		unset($options['ext']);
+		$protocol = $options['secure'] === true ? 'https' : 'http';
 
-		$imageUrl = $this->__url . $this->__emailHash($email, $this->__hashType);
+		$imageUrl = $this->__url[$protocol] . $this->__emailHash($email, $this->__hashType);
 		if ($ext === true) {
 			// If 'ext' option is supplied and true, append an extension to the generated image URL.
 			// This helps systems that don't display images unless they have a specific image extension on the URL.
