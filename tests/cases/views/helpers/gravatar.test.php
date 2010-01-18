@@ -44,17 +44,6 @@ class GravatarHelperTest extends CakeTestCase {
 	}
 
 /**
- * testCorrectInstances
- *
- * @return void
- * @access public
- */
-	public function testCorrectInstances() {
-		$this->assertIsA($this->Gravatar, 'GravatarHelper');
-		$this->assertIsA($this->Gravatar->Html, 'HtmlHelper');
-	}
-
-/**
  * testUrl
  *
  * @return void
