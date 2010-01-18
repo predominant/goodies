@@ -183,13 +183,15 @@ class GravatarHelper extends AppHelper {
  * @access private
  */
 	private function __buildOptions($options = array()) {
-		if (!empty($options)) {
+		$gravatarOptions = array_intersect(array_keys($options), array_keys($this->__default));
+		if (!empty($gravatarOptions)) {
 			$optionArray = array();
-			foreach ($options as $k => $v) {
-				if ($v == 'default' || $v == 'none') {
+			foreach ($gravatarOptions as $key) {
+				$value = $options[$key];
+				if ($value == 'default' || $value == 'none') {
 					continue;
 				}
-				$optionArray[] = $k . '=' . mb_strtolower($v);
+				$optionArray[] = $key . '=' . mb_strtolower($value);
 			}
 			return '?' . implode('&amp;', $optionArray);
 		}
