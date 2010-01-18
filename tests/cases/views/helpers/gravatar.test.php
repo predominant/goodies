@@ -47,6 +47,30 @@ class GravatarHelperTest extends CakeTestCase {
 	}
 
 /**
+ * testExtensions
+ *
+ * @return void
+ * @access public
+ */
+	public function testExtensions() {
+		
+	}
+
+/**
+ * testAlternateDefaultIcon
+ *
+ * @return void
+ * @access public
+ */
+	public function testAlternateDefaultIcon() {
+		$expected = 'http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
+		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'default' => 'wavatar'));
+		list($url, $params) = explode('?', $result);
+		$this->assertEqual($expected, $url);
+		$this->assertPattern('/default=wavatar/', $params);
+	}
+
+/**
  * testNonSecureUrl
  *
  * @return void
@@ -67,7 +91,7 @@ class GravatarHelperTest extends CakeTestCase {
  * testSecureUrl
  *
  * @return void
- * @author Predominant
+ * @access public
  */
 	public function testSecureUrl() {
 		$expected = 'https://secure.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
