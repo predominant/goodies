@@ -160,7 +160,6 @@ class GravatarHelper extends AppHelper {
 				unset($options['default']);
 			}
 		}
-		debug($options);
 		return $options;
 	}
 
