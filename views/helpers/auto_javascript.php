@@ -4,11 +4,11 @@
  *
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
- * @copyright   Copyright 2009, Graham Weldon
+ * @copyright   Copyright 2009, Graham Weldon (http://grahamweldon.com)
  * @link        http://grahamweldon.com/projects/caketime CakeTime Project
  * @package     caketime
  * @subpackage  caketime.views.helpers
- * @author      Graham Weldon
+ * @author      Graham Weldon (http://grahamweldon.com)
  * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class AutoJavascriptHelper extends AppHelper {
