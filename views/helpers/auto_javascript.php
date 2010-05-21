@@ -6,8 +6,8 @@
  *
  * @copyright   Copyright 2009, Graham Weldon (http://grahamweldon.com)
  * @link        http://grahamweldon.com/projects/caketime CakeTime Project
- * @package     caketime
- * @subpackage  caketime.views.helpers
+ * @package     goodies
+ * @subpackage  goodies.views.helpers
  * @author      Graham Weldon (http://grahamweldon.com)
  * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */

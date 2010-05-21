@@ -6,11 +6,10 @@ App::import(array('Security', 'Validation'));
  *
  * A CakePHP View Helper for the display of Gravatar images (http://www.gravatar.com)
  *
- * @copyright Copyright 2010, Graham Weldon
+ * @copyright Copyright 2010, Graham Weldon (http://grahamweldon.com)
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  * @package goodies
- * @subpackage goodies.tests.cases.helpers
- *
+ * @subpackage goodies.views.helpers
  */
 class GravatarHelper extends AppHelper {
 
