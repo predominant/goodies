@@ -190,4 +190,3 @@ class GravatarHelperTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 	}
 }
-?>

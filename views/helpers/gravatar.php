@@ -178,4 +178,3 @@ class GravatarHelper extends AppHelper {
 		return '';
 	}
 }
-?>

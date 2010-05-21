@@ -70,4 +70,3 @@ class AutoJavascriptHelper extends AppHelper {
 		}
 	}
 }
-?>
