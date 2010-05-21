@@ -41,7 +41,7 @@ class AutoJavascriptHelper extends AppHelper {
  * @access public
  */
 	public function __construct($options = array()) {
-		$this->__options = am($this->__options, $options);
+		$this->__options = array_merge($this->__options, $options);
 	}
 
 /**
@@ -64,6 +64,7 @@ class AutoJavascriptHelper extends AppHelper {
 			$file = $path . $file;
 			$includeFile = WWW_ROOT . 'js' . DS . $file;
 			if (file_exists($includeFile)) {
+				$file = str_replace('\\', '/', $file);
 				$this->Javascript->link($file, false);
 			}
 		}
