@@ -30,7 +30,7 @@ class AutoJavascriptHelper extends AppHelper {
  * @var array
  * @access public
  */
-	public $helpers = array('Javascript');
+	public $helpers = array('Html');
 
 /**
  * Object constructor
@@ -65,7 +65,7 @@ class AutoJavascriptHelper extends AppHelper {
 			$includeFile = WWW_ROOT . 'js' . DS . $file;
 			if (file_exists($includeFile)) {
 				$file = str_replace('\\', '/', $file);
-				$this->Javascript->link($file, false);
+				$this->Html->script($file, array('inline' => false));
 			}
 		}
 	}
