@@ -22,7 +22,9 @@ class AutoJavascriptHelper extends AppHelper {
  * @var array
  * @access private
  */
-	private $__options = array('path' => 'autoload');
+	private $__options = array(
+		'path' => 'autoload',
+		'theme' => true);
 
 /**
  * View helpers required by this helper
@@ -62,7 +64,11 @@ class AutoJavascriptHelper extends AppHelper {
 
 		foreach ($files as $file) {
 			$file = $path . $file;
-			$includeFile = WWW_ROOT . 'js' . DS . $file;
+			if ($theme && !empty($this->theme)) {
+				$includeFile = VIEWS . 'themed' . DS . $this->theme . DS . 'webroot' . DS . 'js' . DS . $file;
+			} else {
+				$includeFile = JS . $file;
+			}
 			if (file_exists($includeFile)) {
 				$file = str_replace('\\', '/', $file);
 				$this->Html->script($file, array('inline' => false));
