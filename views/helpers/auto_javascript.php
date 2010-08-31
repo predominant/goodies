@@ -53,6 +53,9 @@ class AutoJavascriptHelper extends AppHelper {
  * @access public
  */
 	public function beforeRender() {
+		if (!isset($this->Html)) {
+			return;
+		}
 		extract($this->__options);
 		if (!empty($path)) {
 			$path .= DS;
