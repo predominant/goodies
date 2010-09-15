@@ -1,6 +1,6 @@
 <?php
 /**
- * CakeTime JavaScript Helper
+ * Automatic JavaScript Helper
  *
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
@@ -20,7 +20,6 @@ class AutoJavascriptHelper extends AppHelper {
  *         from. This is relative to the 'WWW_ROOT/js' directory
  *
  * @var array
- * @access private
  */
 	private $__options = array(
 		'path' => 'autoload',
@@ -30,7 +29,6 @@ class AutoJavascriptHelper extends AppHelper {
  * View helpers required by this helper
  *
  * @var array
- * @access public
  */
 	public $helpers = array('Html');
 
@@ -40,7 +38,6 @@ class AutoJavascriptHelper extends AppHelper {
  * Allows passing in options to change class behavior
  *
  * @param string $options Key value array of options
- * @access public
  */
 	public function __construct($options = array()) {
 		$this->__options = array_merge($this->__options, $options);
@@ -50,7 +47,6 @@ class AutoJavascriptHelper extends AppHelper {
  * Before Render callback
  *
  * @return void
- * @access public
  */
 	public function beforeRender() {
 		extract($this->__options);
