@@ -22,7 +22,6 @@ class GravatarHelperTest extends CakeTestCase {
  * Gravatar helper
  *
  * @var GravatarHelper
- * @access public
  */
 	public $Gravatar = null;
 
@@ -30,7 +29,6 @@ class GravatarHelperTest extends CakeTestCase {
  * Start Test
  *
  * @return void
- * @access public
  */
 	public function startTest() {
 		$this->Gravatar =& ClassRegistry::init('GravatarHelper');
@@ -41,7 +39,6 @@ class GravatarHelperTest extends CakeTestCase {
  * End Test
  *
  * @return void
- * @access public
  */
 	public function endTest() {
 		unset($this->Gravatar);
@@ -51,7 +48,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testBaseUrlGeneration
  *
  * @return void
- * @access public
  */
 	public function testBaseUrlGeneration() {
 		$expected = 'http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
@@ -64,7 +60,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testExtensions
  *
  * @return void
- * @access public
  */
 	public function testExtensions() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => true, 'default' => 'wavatar'));
@@ -75,7 +70,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testRating
  *
  * @return void
- * @access public
  */
 	public function testRating() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => true, 'default' => 'wavatar'));
@@ -86,7 +80,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testAlternateDefaultIcon
  *
  * @return void
- * @access public
  */
 	public function testAlternateDefaultIcon() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'default' => 'wavatar'));
@@ -98,7 +91,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testAlternateDefaultIconCorrection
  *
  * @return void
- * @access public
  */
 	public function testAlternateDefaultIconCorrection() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'default' => '12345'));
@@ -109,7 +101,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testSize
  *
  * @return void
- * @access public
  */
 	public function testSize() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('size' => '120'));
@@ -121,7 +112,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testImageTag
  *
  * @return void
- * @access public
  */
 	public function testImageTag() {
 		$expected = '<img src="http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5') . '" alt="" />';
@@ -137,7 +127,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testDefaulting
  *
  * @return void
- * @access public
  */
 	public function testDefaulting() {
 		$result = $this->Gravatar->url('example@gravatar.com', array('default' => 'wavatar', 'size' => 'default'));
@@ -149,7 +138,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testNonSecureUrl
  *
  * @return void
- * @access public
  */
 	public function testNonSecureUrl() {
 		$_SERVER['HTTPS'] = false;
@@ -172,7 +160,6 @@ class GravatarHelperTest extends CakeTestCase {
  * testSecureUrl
  *
  * @return void
- * @access public
  */
 	public function testSecureUrl() {
 		$expected = 'https://secure.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
