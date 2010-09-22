@@ -4,7 +4,7 @@
  *
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
- * @copyright   Copyright 2009, Graham Weldon (http://grahamweldon.com)
+ * @copyright   Copyright 2009-2010, Graham Weldon (http://grahamweldon.com)
  * @link        http://grahamweldon.com/projects/caketime CakeTime Project
  * @package     goodies
  * @subpackage  goodies.views.helpers
