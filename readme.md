@@ -77,7 +77,7 @@ The Gravatar helper provides an easy way to integrate [Gravatars](http://gravata
 Include the Gravatar helper on your controller (This can be your AppController, if you want to use gravatars throughout your application).
 
 	class MyController extends AppController {
-		public $helpers = array('Gravatar');
+		public $helpers = array('Goodies.Gravatar');
 		// ...
 	}
 
