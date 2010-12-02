@@ -47,7 +47,8 @@ class ThumbooHelper extends AppHelper {
 			$size = 'large';
 		}
 
-		$protocol = !empty(env('HTTPS')) ? 'https' : 'http';
+		$protocol = env('HTTPS');
+		$protocol = !empty($protocol) ? 'https' : 'http';
 		$params = 'u=' . urlencode($protocol . '://' . env('HTTP_HOST') . env('REQUEST_URI'));
 		$params .= '&su=' . urlencode($url);
 		$params .= '&c=' . $size;
