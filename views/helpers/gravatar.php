@@ -67,14 +67,17 @@ class GravatarHelper extends AppHelper {
  *
  */
 	public function __construct($settings = array()) {
-		$this->__default = array_merge(array_intersect($settings, $__default), $this->__default);
-		
+		if (!is_array($settings)) {
+			$settings = array();
+		}
+		$this->__default = array_merge($this->__default, array_intersect_key($settings, $this->__default));
+
 		// Default the secure option to match the current URL.
 		$this->__default['secure'] = env('HTTPS');
 	}
 
 /**
- * Show gravatar for the supplied email address
+ * Show gravatar for the supplied email addresses
  *
  * @param string $email Email address
  * @param array $options Array of options, keyed from default settings
