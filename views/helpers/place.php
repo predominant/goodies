@@ -46,7 +46,7 @@ class PlaceHelper extends Apphelper {
 	protected function _typeMethod($type) {
 		$method = '_image' . Inflector::camelize($type);
 		if (!method_exists($this, $method)) {
-			return false
+			return false;
 		}
 		return $method;
 	}
