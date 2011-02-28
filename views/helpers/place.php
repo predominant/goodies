@@ -32,7 +32,7 @@ class PlaceHelper extends Apphelper {
 		}
 		$typeMethod = $this->_typeMethod($type);
 		if (!$typeMethod) {
-			return __('Failed to generate placeholder type "' . $type . '".', true);
+			return sprintf(__('Failed to generate placeholder type "%s".', true), $type);
 		}
 		return $this->Html->image($this->$typeMethod($width, $height));
 	}
