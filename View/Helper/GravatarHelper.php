@@ -71,7 +71,8 @@ class GravatarHelper extends AppHelper {
  * Constructor
  *
  */
-	public function __construct($settings = array()) {
+	public function __construct(View $view, $settings = array()) {
+		parent::__construct($view, $settings);
 		if (!is_array($settings)) {
 			$settings = array();
 		}
