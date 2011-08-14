@@ -9,9 +9,8 @@ App::uses('HtmlHelper', 'View/Helper');
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
  * @copyright   Copyright 2009-2011, Graham Weldon (http://grahamweldon.com)
- * @link        http://grahamweldon.com/projects/caketime CakeTime Project
  * @package     goodies
- * @subpackage  goodies.views.helpers
+ * @subpackage  goodies.View.Helper
  * @author      Graham Weldon (http://grahamweldon.com)
  * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */
