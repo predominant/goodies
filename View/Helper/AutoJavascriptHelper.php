@@ -43,6 +43,9 @@ class AutoJavascriptHelper extends AppHelper {
  * @param string $options Key value array of options
  */
 	public function __construct(View $view, $options = array()) {
+		if ($options == null) {
+			$options = array();
+		}
 		parent::__construct($view, $options);
 		$this->__options = array_merge($this->__options, $options);
 	}
