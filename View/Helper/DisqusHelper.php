@@ -30,40 +30,6 @@ class DisqusHelper extends HtmlHelper {
 	protected $_configPath = null;
 
 /**
- * Constructor
- *
- * Provides a settings file for additional tags
- *
- * @param View $View View reference
- * @param array $settings Settings
- */
-	public function __construct(View $View, $settings = array()) {
-		if (!isset($settings['configFile']) || empty($settings['configFile'])) {
-			$settings['configFile'] = 'DisqusTags.php';
-		}
-		if (!isset($settings['configPath']) || empty($settings['configPath'])) {
-			$this->_configPath = CakePlugin::path('Goodies') . 'Config' . DS;
-		}
-		parent::__construct($View, $settings);
-	}
-
-/**
- * Load Configuration
- *
- * Provides a basic override to pass the plugin path for loading the configuration
- *
- * @param string $configFile Configuration filename
- * @param string $path Options path parameter
- * @return void
- */
-	public function loadConfig($configFile, $path = null) {
-		if (!$path && !empty($this->_configPath)) {
-			$path = $this->_configPath;
-		}
-		return parent::loadConfig($configFile, $path);
-	}
-
-/**
  * Embed the comments system for the specified shortname
  *
  * You need to register this shortname with Disqus first: http://disqus.com
