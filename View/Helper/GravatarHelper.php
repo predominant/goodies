@@ -1,15 +1,20 @@
 <?php
-App::import(array('Security', 'Validation'));
+
+App::uses('Security', 'Utility');
+App::uses('Validation', 'Utility');
+App::uses('AppHelper', 'View/Helper');
+App::uses('HtmlHelper', 'View/Helper');
 
 /**
  * CakePHP Gravatar Helper
  *
  * A CakePHP View Helper for the display of Gravatar images (http://www.gravatar.com)
  *
- * @copyright Copyright 2009-2010, Graham Weldon (http://grahamweldon.com)
- * @license http://www.opensource.org/licenses/mit-license.php The MIT License
- * @package goodies
- * @subpackage goodies.views.helpers
+ * @copyright   Copyright 2009-2011, Graham Weldon (http://grahamweldon.com)
+ * @package     goodies
+ * @subpackage  goodies.View.Helper
+ * @author      Graham Weldon (http://grahamweldon.com)
+ * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class GravatarHelper extends AppHelper {
 
@@ -42,7 +47,7 @@ class GravatarHelper extends AppHelper {
  *
  * @var array
  */
-	private $__defaultIcons = array('none', 'mm', 'identicon', 'monsterid', 'wavatar', '404');
+	private $__defaultIcons = array('none', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', '404');
 
 /**
  * Default settings
@@ -66,7 +71,8 @@ class GravatarHelper extends AppHelper {
  * Constructor
  *
  */
-	public function __construct($settings = array()) {
+	public function __construct(View $view, $settings = array()) {
+		parent::__construct($view, $settings);
 		if (!is_array($settings)) {
 			$settings = array();
 		}

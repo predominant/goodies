@@ -1,13 +1,16 @@
 <?php
+
+App::uses('AppHelper', 'View/Helper');
+App::uses('HtmlHelper', 'View/Helper');
+
 /**
  * Automatic JavaScript Helper
  *
  * Facilitates JavaScript Automatic loading and inclusion for page specific JS
  *
- * @copyright   Copyright 2009-2010, Graham Weldon (http://grahamweldon.com)
- * @link        http://grahamweldon.com/projects/caketime CakeTime Project
+ * @copyright   Copyright 2009-2011, Graham Weldon (http://grahamweldon.com)
  * @package     goodies
- * @subpackage  goodies.views.helpers
+ * @subpackage  goodies.View.Helper
  * @author      Graham Weldon (http://grahamweldon.com)
  * @license     http://www.opensource.org/licenses/mit-license.php The MIT License
  */
@@ -39,7 +42,11 @@ class AutoJavascriptHelper extends AppHelper {
  *
  * @param string $options Key value array of options
  */
-	public function __construct($options = array()) {
+	public function __construct(View $view, $options = array()) {
+		if ($options == null) {
+			$options = array();
+		}
+		parent::__construct($view, $options);
 		$this->__options = array_merge($this->__options, $options);
 	}
 
@@ -49,9 +56,6 @@ class AutoJavascriptHelper extends AppHelper {
  * @return void
  */
 	public function beforeRender() {
-		if (!isset($this->Html)) {
-			return;
-		}
 		extract($this->__options);
 		if (!empty($path)) {
 			$path .= DS;
