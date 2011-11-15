@@ -8,7 +8,33 @@
  * @subpackage goodies.tests.cases.helpers
  *
  */
-App::import('Helper', array('Html', 'Goodies.Gravatar'));
+//App::import('Helper', array('Html', 'Goodies.Gravatar'));
+App::uses('Helper', 'View');
+App::uses('Controller', 'Controller');
+App::uses('GravatarHelper', 'Goodies.View/Helper');
+
+/**
+ * GravatarTestController class
+ *
+ * @package Goodies
+ * @subpackage Goodies.Test.Case.View.Helper
+ */
+class GravatarTestController extends Controller {
+
+/**
+ * name property
+ *
+ * @var string 'TheTest'
+ */
+	public $name = 'Gravatar';
+
+/**
+ * uses property
+ *
+ * @var mixed null
+ */
+	public $uses = null;
+}
 
 /**
  * GravatarHelper Test
@@ -31,8 +57,8 @@ class GravatarHelperTest extends CakeTestCase {
  * @return void
  */
 	public function startTest() {
-		$this->Gravatar =& ClassRegistry::init('GravatarHelper');
-		$this->Gravatar->Html =& ClassRegistry::init('HtmlHelper');
+		$this->View = new View(new GravatarTestController());
+		$this->Gravatar = new GravatarHelper($this->View);
 	}
 
 /**
@@ -151,6 +177,7 @@ class GravatarHelperTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 
 		$_SERVER['HTTPS'] = true;
+		$this->Gravatar = new GravatarHelper($this->View);
 		$expected = 'http://www.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'secure' => false));
 		$this->assertEqual($expected, $result);
@@ -167,7 +194,7 @@ class GravatarHelperTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 
 		$_SERVER['HTTPS'] = true;
-		
+		$this->Gravatar = new GravatarHelper($this->View);
 		$expected = 'https://secure.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false));
 		$this->assertEqual($expected, $result);
@@ -175,5 +202,17 @@ class GravatarHelperTest extends CakeTestCase {
 		$expected = 'https://secure.gravatar.com/avatar/' . Security::hash('example@gravatar.com', 'md5');
 		$result = $this->Gravatar->url('example@gravatar.com', array('ext' => false, 'secure' => true));
 		$this->assertEqual($expected, $result);
+	}
+
+/**
+ * testForceDefault
+ *
+ * @return void
+ */
+	public function testForceDefault() {
+		$result = $this->Gravatar->url('example@gravatar.com', array('forcedefault' => true));
+		$this->assertPattern('/\?/', $result);
+		list($url, $params) = explode('?', $result);
+		$this->assertPattern('/f=y/', $params);
 	}
 }
