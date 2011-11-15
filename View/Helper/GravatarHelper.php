@@ -58,7 +58,9 @@ class GravatarHelper extends AppHelper {
 		'default' => null,
 		'size' => null,
 		'rating' => null,
-		'ext' => false);
+		'f' => null,
+		'ext' => false,
+		'secure' => false);
 
 /**
  * Helpers used by this helper
@@ -79,7 +81,10 @@ class GravatarHelper extends AppHelper {
 		$this->__default = array_merge($this->__default, array_intersect_key($settings, $this->__default));
 
 		// Default the secure option to match the current URL.
-		$this->__default['secure'] = env('HTTPS');
+		$https = env('HTTPS');
+		if (!empty($https)) {
+			$this->__default['secure'] = true;
+		}
 	}
 
 /**
@@ -143,6 +148,14 @@ class GravatarHelper extends AppHelper {
 				unset($options['default']);
 			}
 		}
+		
+		if (!isset($options['forcedefault']) || !$options['forcedefault']) {
+			unset($options['f']);
+		} else {
+			$options['f'] = 'y';
+		}
+		unset($options['forcedefault']);
+
 		return $options;
 	}
 
