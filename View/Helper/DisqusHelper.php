@@ -47,7 +47,7 @@ class DisqusHelper extends HtmlHelper {
 		
 		$vars = $this->_constructVariables($options);
 		
-		$threadDiv = $this->tag('div', null, array('id' => 'disqus_thread'));
+		$threadDiv = $this->tag('div', '', array('id' => 'disqus_thread'));
 		$scriptBlock = $this->_generateScriptBlock($vars);
 		$noscript = $this->tag('noscript', __d('goodies', 'Please enable Javascript to view the comments on this page.'));
 		
