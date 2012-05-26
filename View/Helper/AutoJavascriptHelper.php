@@ -62,8 +62,8 @@ class AutoJavascriptHelper extends AppHelper {
 		}
 
 		$files = array(
-			$this->params['controller'] . '.js',
-			$this->params['controller'] . DS . $this->params['action'] . '.js');
+			$this->request->controller . '.js',
+			$this->request->controller . DS . $this->request->action . '.js');
 
 		foreach ($files as $file) {
 			$file = $path . $file;
