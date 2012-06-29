@@ -13,8 +13,18 @@ App::uses('AppHelper', 'View/Helper');
 
 class YouTubeHelper extends HtmlHelper {
 
+/**
+ * Embed URI
+ *
+ * @var string
+ */
 	protected $_embedUri = 'http://www.youtube.com/embed/';
 
+/**
+ * Default options
+ *
+ * @var array
+ */
 	protected $_defaultOptions = array(
 		'related' => true,
 		'width' => 640,
@@ -24,6 +34,11 @@ class YouTubeHelper extends HtmlHelper {
 		
 	);
 
+/**
+ * Embed a video
+ *
+ * @return string <iframe> element for video
+ */
 	public function embed($id, $options = array()) {
 		$options = array_merge($this->_defaultOptions, $options);
 		$options['src'] = $this->_embedUri . $id;
