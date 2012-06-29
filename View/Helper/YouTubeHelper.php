@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * CakePHP YouTube Helper
+ *
+ * A CakePHP View Helper for the embedding of YouTube videos (http://youtube.com)
+ *
+ * @copyright Copyright 2012, Graham Weldon (http://grahamweldon.com)
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @package Goodies
+ * @subpackage Goodies.View.Helper
+ */
 App::uses('AppHelper', 'View/Helper');
 
 class YouTubeHelper extends HtmlHelper {
